@@ -6,10 +6,11 @@ and/or summarization.
 from random import random
 import pandas as pd
 import pygal
+import sklearn
 from sklearn.preprocessing import StandardScaler
 
 
-RAW_MATCHES_FILE = 'raw_matches.csv'
+RAW_MATCHES_FILE = 'raw_matches_new.csv'
 RAW_WINNERS_FILE = 'raw_winners.csv'
 TEAM_RENAMES_FILE = 'team_renames.csv'
 
@@ -200,7 +201,7 @@ def graph_matches_results_scatter(matches, feature_x, feature_y):
 
 
 def graph_teams_stat_bars(team_stats, stat):
-    sorted_team_stats = team_stats.sort(stat)
+    sorted_team_stats = team_stats.sort_values(by=[stat])
     graph = pygal.Bar(show_legend=False,
                       title='Teams by ' + stat,
                       x_title='team',
